@@ -11,7 +11,7 @@ namespace WindowsFormsApp1
     public class MasterClass
     {
 
-        public static string cnn = ConfigurationManager.ConnectionStrings["DB20192001399ConnectionString"].ConnectionString;
+        public static string cnn = ConfigurationManager.ConnectionStrings["WindowsFormsApp1.Properties.Settings.DB20192001399ConnectionString"].ConnectionString;
         public static SqlConnection conec;
         public static bool activar = false;
 

@@ -28,24 +28,20 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.SelectTabla = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.masterDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.dg = new System.Windows.Forms.DataGridView();
             this.masterDataSet = new WindowsFormsApp1.MasterDataSet();
-            this.button1 = new System.Windows.Forms.Button();
+            this.save = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.masterDataSetBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dg)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.masterDataSet)).BeginInit();
             this.SuspendLayout();
             // 
-            // comboBox1
+            // SelectTabla
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
+            this.SelectTabla.FormattingEnabled = true;
+            this.SelectTabla.Items.AddRange(new object[] {
             "(Seleccione una opcion)",
             "Articulos",
             "Cliente",
@@ -53,10 +49,11 @@
             "Proveedor",
             "Servicio",
             "Detalle de Servicio"});
-            this.comboBox1.Location = new System.Drawing.Point(12, 99);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(252, 21);
-            this.comboBox1.TabIndex = 0;
+            this.SelectTabla.Location = new System.Drawing.Point(12, 99);
+            this.SelectTabla.Name = "SelectTabla";
+            this.SelectTabla.Size = new System.Drawing.Size(252, 21);
+            this.SelectTabla.TabIndex = 0;
+            this.SelectTabla.SelectedIndexChanged += new System.EventHandler(this.SelectTabla_SelectedIndexChanged);
             // 
             // label1
             // 
@@ -69,35 +66,29 @@
             this.label1.Text = "Pantalla a mostrar";
             this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
-            // dataGridView1
+            // dg
             // 
-            this.dataGridView1.AllowUserToOrderColumns = true;
-            this.dataGridView1.AutoGenerateColumns = false;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.DataSource = this.masterDataSetBindingSource;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 135);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(1007, 369);
-            this.dataGridView1.TabIndex = 2;
-            // 
-            // masterDataSetBindingSource
-            // 
-            this.masterDataSetBindingSource.DataSource = this.masterDataSet;
-            this.masterDataSetBindingSource.Position = 0;
+            this.dg.AllowUserToOrderColumns = true;
+            this.dg.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dg.Location = new System.Drawing.Point(12, 135);
+            this.dg.Name = "dg";
+            this.dg.Size = new System.Drawing.Size(1007, 369);
+            this.dg.TabIndex = 2;
             // 
             // masterDataSet
             // 
             this.masterDataSet.DataSetName = "MasterDataSet";
             this.masterDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
-            // button1
+            // save
             // 
-            this.button1.Location = new System.Drawing.Point(12, 510);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(122, 48);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "Salvar";
-            this.button1.UseVisualStyleBackColor = true;
+            this.save.Location = new System.Drawing.Point(12, 510);
+            this.save.Name = "save";
+            this.save.Size = new System.Drawing.Size(122, 48);
+            this.save.TabIndex = 3;
+            this.save.Text = "Salvar";
+            this.save.UseVisualStyleBackColor = true;
+            this.save.Click += new System.EventHandler(this.save_Click);
             // 
             // button2
             // 
@@ -108,30 +99,20 @@
             this.button2.Text = "Eliminar";
             this.button2.UseVisualStyleBackColor = true;
             // 
-            // comboBox2
-            // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(457, 13);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(8, 21);
-            this.comboBox2.TabIndex = 4;
-            // 
             // MasterForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1031, 584);
-            this.Controls.Add(this.comboBox2);
             this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.save);
+            this.Controls.Add(this.dg);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.SelectTabla);
             this.Name = "MasterForm";
             this.Text = "Vista Maestra";
             this.Load += new System.EventHandler(this.MasterForm_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.masterDataSetBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dg)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.masterDataSet)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -140,14 +121,12 @@
 
         #endregion
 
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox SelectTabla;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.BindingSource masterDataSetBindingSource;
+        private System.Windows.Forms.DataGridView dg;
         private MasterDataSet masterDataSet;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button save;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.ComboBox comboBox2;
     }
 }
 

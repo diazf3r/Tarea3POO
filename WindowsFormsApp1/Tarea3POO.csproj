@@ -72,6 +72,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MasterClass.cs" />
+    <Compile Include="MasterDataSet.cs">
+      <DependentUpon>MasterDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="MasterDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
