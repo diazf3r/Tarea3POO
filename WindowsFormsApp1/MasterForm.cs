@@ -115,5 +115,10 @@ namespace WindowsFormsApp1
         {
 
         }
+
+        private void delete_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
