@@ -15,5 +15,8 @@ namespace WindowsFormsApp1
         public static SqlConnection conec;
         public static bool activar = false;
 
+
+        //MessageBox.Show(ex.Message, "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
     }
 }
