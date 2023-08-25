@@ -22,6 +22,8 @@ namespace WindowsFormsApp1
 
         private SqlDataAdapter interaccionDataAdapter;
 
+        private String FacturaID;
+
         public ServicioCliente()
         {
             InitializeComponent();
@@ -121,6 +123,46 @@ namespace WindowsFormsApp1
         private void DetalleFacturaBtn_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void crearVentaBtn_Click(object sender, EventArgs e)
+        {
+            if (this.clienteID == null || this.FacturaID == null)
+            {
+                MessageBox.Show("Seleccione un cliente o factura.");
+                return;
+            }
+
+            CrearVentaServicio crearVentaServicio = new CrearVentaServicio("Venta", int.Parse(this.FacturaID), Int32.Parse(this.clienteID));
+            Visible = false;
+            crearVentaServicio.ShowDialog();
+            Visible = true;
+        }
+
+        private void crearServicioBtn_Click(object sender, EventArgs e)
+        {
+            if (this.clienteID == null || this.FacturaID==null)
+            {
+                MessageBox.Show("Seleccione un cliente o factura.");
+                return;
+            }
+
+            CrearVentaServicio crearVentaServicio = new CrearVentaServicio("Servicio", int.Parse(this.FacturaID), Int32.Parse(this.clienteID));
+            Visible = false;
+            crearVentaServicio.ShowDialog();
+            Visible = true;
+
+        }
+
+        private void FacturaSelectionChange(object sender, EventArgs e)
+        {
+            if( this.facturaDataGrid.SelectedRows.Count == 0)
+            {
+                return;
+            }
+            DataGridViewRow row = this.facturaDataGrid.SelectedRows[0];
+
+            this.FacturaID = row.Cells["FacturaID"].Value.ToString();
         }
     }
 }

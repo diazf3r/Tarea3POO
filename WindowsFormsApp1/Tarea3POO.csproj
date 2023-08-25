@@ -71,6 +71,18 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Cantidad.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Cantidad.Designer.cs">
+      <DependentUpon>Cantidad.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CrearVentaServicio.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CrearVentaServicio.Designer.cs">
+      <DependentUpon>CrearVentaServicio.cs</DependentUpon>
+    </Compile>
     <Compile Include="MasterClass.cs" />
     <Compile Include="MasterDataSet.cs">
       <DependentUpon>MasterDataSet.xsd</DependentUpon>
@@ -94,6 +106,12 @@
     <Compile Include="ServicioCliente.Designer.cs">
       <DependentUpon>ServicioCliente.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Cantidad.resx">
+      <DependentUpon>Cantidad.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrearVentaServicio.resx">
+      <DependentUpon>CrearVentaServicio.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MasterForm.resx">
       <DependentUpon>MasterForm.cs</DependentUpon>
     </EmbeddedResource>

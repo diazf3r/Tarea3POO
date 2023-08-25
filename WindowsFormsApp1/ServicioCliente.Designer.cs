@@ -44,7 +44,7 @@
             // clienteCombo
             // 
             this.clienteCombo.FormattingEnabled = true;
-            this.clienteCombo.Location = new System.Drawing.Point(314, 129);
+            this.clienteCombo.Location = new System.Drawing.Point(244, 99);
             this.clienteCombo.Name = "clienteCombo";
             this.clienteCombo.Size = new System.Drawing.Size(138, 21);
             this.clienteCombo.TabIndex = 0;
@@ -53,10 +53,11 @@
             // facturaDataGrid
             // 
             this.facturaDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.facturaDataGrid.Location = new System.Drawing.Point(106, 195);
+            this.facturaDataGrid.Location = new System.Drawing.Point(36, 165);
             this.facturaDataGrid.Name = "facturaDataGrid";
             this.facturaDataGrid.Size = new System.Drawing.Size(558, 150);
             this.facturaDataGrid.TabIndex = 1;
+            this.facturaDataGrid.SelectionChanged += new System.EventHandler(this.FacturaSelectionChange);
             // 
             // masterDataSet
             // 
@@ -65,7 +66,7 @@
             // 
             // CrearInteraccionBtn
             // 
-            this.CrearInteraccionBtn.Location = new System.Drawing.Point(267, 380);
+            this.CrearInteraccionBtn.Location = new System.Drawing.Point(197, 350);
             this.CrearInteraccionBtn.Name = "CrearInteraccionBtn";
             this.CrearInteraccionBtn.Size = new System.Drawing.Size(227, 23);
             this.CrearInteraccionBtn.TabIndex = 2;
@@ -79,7 +80,7 @@
             this.materialLabel1.Depth = 0;
             this.materialLabel1.Font = new System.Drawing.Font("Roboto", 11F);
             this.materialLabel1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialLabel1.Location = new System.Drawing.Point(355, 107);
+            this.materialLabel1.Location = new System.Drawing.Point(285, 77);
             this.materialLabel1.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel1.Name = "materialLabel1";
             this.materialLabel1.Size = new System.Drawing.Size(56, 19);
@@ -92,7 +93,7 @@
             this.materialLabel2.Depth = 0;
             this.materialLabel2.Font = new System.Drawing.Font("Roboto", 11F);
             this.materialLabel2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialLabel2.Location = new System.Drawing.Point(310, 173);
+            this.materialLabel2.Location = new System.Drawing.Point(240, 143);
             this.materialLabel2.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel2.Name = "materialLabel2";
             this.materialLabel2.Size = new System.Drawing.Size(142, 19);
@@ -101,7 +102,7 @@
             // 
             // DetalleFacturaBtn
             // 
-            this.DetalleFacturaBtn.Location = new System.Drawing.Point(325, 351);
+            this.DetalleFacturaBtn.Location = new System.Drawing.Point(255, 321);
             this.DetalleFacturaBtn.Name = "DetalleFacturaBtn";
             this.DetalleFacturaBtn.Size = new System.Drawing.Size(110, 23);
             this.DetalleFacturaBtn.TabIndex = 5;
@@ -111,27 +112,29 @@
             // 
             // crearServicioBtn
             // 
-            this.crearServicioBtn.Location = new System.Drawing.Point(413, 408);
+            this.crearServicioBtn.Location = new System.Drawing.Point(343, 378);
             this.crearServicioBtn.Name = "crearServicioBtn";
             this.crearServicioBtn.Size = new System.Drawing.Size(81, 23);
             this.crearServicioBtn.TabIndex = 6;
             this.crearServicioBtn.Text = "Crear Servicio";
             this.crearServicioBtn.UseVisualStyleBackColor = true;
+            this.crearServicioBtn.Click += new System.EventHandler(this.crearServicioBtn_Click);
             // 
             // crearVentaBtn
             // 
-            this.crearVentaBtn.Location = new System.Drawing.Point(267, 408);
+            this.crearVentaBtn.Location = new System.Drawing.Point(197, 378);
             this.crearVentaBtn.Name = "crearVentaBtn";
             this.crearVentaBtn.Size = new System.Drawing.Size(75, 23);
             this.crearVentaBtn.TabIndex = 7;
             this.crearVentaBtn.Text = "Crear Venta";
             this.crearVentaBtn.UseVisualStyleBackColor = true;
+            this.crearVentaBtn.Click += new System.EventHandler(this.crearVentaBtn_Click);
             // 
             // ServicioCliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 462);
+            this.ClientSize = new System.Drawing.Size(640, 470);
             this.Controls.Add(this.crearVentaBtn);
             this.Controls.Add(this.crearServicioBtn);
             this.Controls.Add(this.DetalleFacturaBtn);
