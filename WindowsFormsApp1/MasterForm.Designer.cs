@@ -28,25 +28,20 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.SelectTabla = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.dg = new System.Windows.Forms.DataGridView();
             this.masterDataSet = new WindowsFormsApp1.MasterDataSet();
             this.save = new System.Windows.Forms.Button();
             this.delete = new System.Windows.Forms.Button();
-            this.servicioBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.servicioTableAdapter = new WindowsFormsApp1.MasterDataSetTableAdapters.ServicioTableAdapter();
+            this.Add_Detail = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dg)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.masterDataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.servicioBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // SelectTabla
             // 
-            this.SelectTabla.FormattingEnabled = true;
             this.SelectTabla.Items.AddRange(new object[] {
-            "(Seleccione una opcion)",
             "Articulos",
             "Cliente",
             "Empleado",
@@ -104,20 +99,22 @@
             this.delete.UseVisualStyleBackColor = true;
             this.delete.Click += new System.EventHandler(this.delete_Click);
             // 
-            // servicioBindingSource
+            // Add_Detail
             // 
-            this.servicioBindingSource.DataMember = "Servicio";
-            this.servicioBindingSource.DataSource = this.masterDataSet;
-            // 
-            // servicioTableAdapter
-            // 
-            this.servicioTableAdapter.ClearBeforeFill = true;
+            this.Add_Detail.Location = new System.Drawing.Point(897, 81);
+            this.Add_Detail.Name = "Add_Detail";
+            this.Add_Detail.Size = new System.Drawing.Size(122, 48);
+            this.Add_Detail.TabIndex = 3;
+            this.Add_Detail.Text = "Agregar Detalle";
+            this.Add_Detail.UseVisualStyleBackColor = true;
+            this.Add_Detail.Click += new System.EventHandler(this.AddDetalle_Click);
             // 
             // MasterForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1031, 584);
+            this.Controls.Add(this.Add_Detail);
             this.Controls.Add(this.delete);
             this.Controls.Add(this.save);
             this.Controls.Add(this.dg);
@@ -128,7 +125,6 @@
             this.Load += new System.EventHandler(this.MasterForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dg)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.masterDataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.servicioBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -142,8 +138,7 @@
         private MasterDataSet masterDataSet;
         private System.Windows.Forms.Button save;
         private System.Windows.Forms.Button delete;
-        private System.Windows.Forms.BindingSource servicioBindingSource;
-        private MasterDataSetTableAdapters.ServicioTableAdapter servicioTableAdapter;
+        private System.Windows.Forms.Button Add_Detail;
     }
 }
 

@@ -11,14 +11,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using MaterialSkin.Controls;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace WindowsFormsApp1
 {
     public partial class MasterForm : MaterialForm
     {
         private SqlDataAdapter MasterDataAdapter;
-        private SqlDataAdapter MasterDataAdapterchild;
         private int option = 0;
         public MasterForm()
         {
@@ -32,8 +30,6 @@ namespace WindowsFormsApp1
 
         private void MasterForm_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'masterDataSet.Servicio' table. You can move, or remove it, as needed.
-            this.servicioTableAdapter.Fill(this.masterDataSet.Servicio);
             MasterClass.conec = new SqlConnection();
             MasterClass.conec.ConnectionString = MasterClass.cnn;
 
@@ -42,7 +38,7 @@ namespace WindowsFormsApp1
         private void SelectTabla_SelectedIndexChanged(object sender, EventArgs e)
         {
             var combo = this.SelectTabla.SelectedItem.ToString();
-
+            this.Add_Detail.Visible = false;
             switch (combo)
             {
                 case "Articulos":
@@ -59,6 +55,7 @@ namespace WindowsFormsApp1
                     break;
                 case "Servicio":
                     Servicio_load();
+                    this.Add_Detail.Visible = true;
                     break;
                 default:
                     MessageBox.Show("Debe seleccionar una opcion", "Atencion", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation);
@@ -176,8 +173,8 @@ namespace WindowsFormsApp1
         private void Proveedor_Delete()
         {
 
-            MasterDataAdapter.UpdateCommand = new SqlCommand("Update Proveedor set Activo = @e where EmpleadoID = @a", MasterClass.conec);
-            MasterDataAdapter.UpdateCommand.Parameters.Add("@a", SqlDbType.Int, 4, "EmpleadoID");
+            MasterDataAdapter.UpdateCommand = new SqlCommand("Update Proveedor set Activo = @e where ProveedorID = @a", MasterClass.conec);
+            MasterDataAdapter.UpdateCommand.Parameters.Add("@a", SqlDbType.Int, 4, "ProveedorID");
             MasterDataAdapter.UpdateCommand.Parameters.Add("@e", SqlDbType.VarChar, 1, "Activo");
 
             MasterDataAdapter.Update(masterDataSet.Empleado);
@@ -185,12 +182,12 @@ namespace WindowsFormsApp1
 
         private void Cliente_load()
         {
-            MasterDataAdapter = new SqlDataAdapter("Select * from Proveedor", MasterClass.conec);
-            MasterDataAdapter.FillSchema(masterDataSet, SchemaType.Source, "Proveedor");
-            MasterDataAdapter.Fill(masterDataSet, "Proveedor");
+            MasterDataAdapter = new SqlDataAdapter("Select * from Cliente", MasterClass.conec);
+            MasterDataAdapter.FillSchema(masterDataSet, SchemaType.Source, "Cliente");
+            MasterDataAdapter.Fill(masterDataSet, "Cliente");
 
             dg.DataSource = masterDataSet;
-            dg.DataMember = "Proveedor";
+            dg.DataMember = "Cliente";
             option = 4;
             this.save.Visible = true;
             this.delete.Visible = false;
@@ -199,7 +196,7 @@ namespace WindowsFormsApp1
         private void Cliente_save()
         {
             MasterDataAdapter.InsertCommand = new SqlCommand("Insert Into Cliente Values(@a,@b,@c,@d,@e,@f, @g, @h)", MasterClass.conec);
-            MasterDataAdapter.InsertCommand.Parameters.Add("@a", SqlDbType.Int, 4, "CLienteID");
+            MasterDataAdapter.InsertCommand.Parameters.Add("@a", SqlDbType.Int, 4, "ClienteID");
             MasterDataAdapter.InsertCommand.Parameters.Add("@b", SqlDbType.VarChar, 10, "Direccion");
             MasterDataAdapter.InsertCommand.Parameters.Add("@c", SqlDbType.VarChar, 1, "Tipo");
             MasterDataAdapter.InsertCommand.Parameters.Add("@d", SqlDbType.VarChar, 1, "Sexo");
@@ -209,7 +206,7 @@ namespace WindowsFormsApp1
             MasterDataAdapter.InsertCommand.Parameters.Add("@h", SqlDbType.Bit, 1, "Activo");
 
             MasterDataAdapter.UpdateCommand = new SqlCommand("Update Cliente set Direccion = @b, Tipo = @c,Sexo = @d, Civil = @e, Razon = @f, Activo = @h, Contacto = @g where ClienteId = @a", MasterClass.conec);
-            MasterDataAdapter.UpdateCommand.Parameters.Add("@a", SqlDbType.Int, 4, "EmpleadoID");
+            MasterDataAdapter.UpdateCommand.Parameters.Add("@a", SqlDbType.Int, 4, "ClienteID");
             MasterDataAdapter.UpdateCommand.Parameters.Add("@b", SqlDbType.VarChar, 10, "Direccion");
             MasterDataAdapter.UpdateCommand.Parameters.Add("@c", SqlDbType.VarChar, 1, "Tipo");
             MasterDataAdapter.UpdateCommand.Parameters.Add("@d", SqlDbType.VarChar, 1, "Sexo");
@@ -223,7 +220,7 @@ namespace WindowsFormsApp1
         private void Cliente_delete()
         {
             MasterDataAdapter.UpdateCommand = new SqlCommand("Update Cliente set Activo = @c where ClienteId = @a", MasterClass.conec);
-            MasterDataAdapter.UpdateCommand.Parameters.Add("@a", SqlDbType.Int, 4, "EmpleadoID");
+            MasterDataAdapter.UpdateCommand.Parameters.Add("@a", SqlDbType.Int, 4, "ClienteId");
             MasterDataAdapter.UpdateCommand.Parameters.Add("@c", SqlDbType.Bit, 1, "Activo");
 
             MasterDataAdapter.Update(masterDataSet.Empleado);
@@ -243,7 +240,7 @@ namespace WindowsFormsApp1
             this.delete.Visible = false;
         }
 
-        private void Servicio_save()
+        private void Servicio()
         {
             MasterDataAdapter.InsertCommand = new SqlCommand("Insert Into Servicio Values(@a,@b,@c)", MasterClass.conec);
             MasterDataAdapter.InsertCommand.Parameters.Add("@a", SqlDbType.Int, 4, "ServicioId");
@@ -255,6 +252,9 @@ namespace WindowsFormsApp1
             MasterDataAdapter.UpdateCommand.Parameters.Add("@b", SqlDbType.VarChar, 50, "Nombre");
             MasterDataAdapter.UpdateCommand.Parameters.Add("@c", SqlDbType.Float, 4, "Precio");
 
+            //MasterDataAdapter.DeleteCommand = new SqlCommand("Delete From Servicios where ServicioID = @a", MasterClass.conec);
+            //MasterDataAdapter.DeleteCommand.Parameters.Add("@a", SqlDbType.Int, 4, "ServicioId");
+
             MasterDataAdapter.Update(masterDataSet.Empleado);
         }
 
@@ -265,13 +265,13 @@ namespace WindowsFormsApp1
                 case 1:
                     try
                     {
-                        //articulo_save();
+                        articulo_save();
                     }
                     catch (Exception ex)
                     {
                         MessageBox.Show(ex.Message, "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
-                break;
+                    break;
 
                 case 2:
                     try
@@ -282,7 +282,7 @@ namespace WindowsFormsApp1
                     {
                         MessageBox.Show(ex.Message, "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
-                break;
+                    break;
 
                 case 3:
                     try
@@ -293,7 +293,7 @@ namespace WindowsFormsApp1
                     {
                         MessageBox.Show(ex.Message, "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
-                break;
+                    break;
                 case 4:
                     try
                     {
@@ -303,11 +303,11 @@ namespace WindowsFormsApp1
                     {
                         MessageBox.Show(ex.Message, "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
-                break;
+                    break;
                 case 5:
                     try
                     {
-                        Servicio_save();
+                        Servicio();
                     }
                     catch (Exception ex)
                     {
@@ -365,8 +365,23 @@ namespace WindowsFormsApp1
                         MessageBox.Show(ex.Message, "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                     break;
+                case 5:
+                    try
+                    {
+                        Servicio();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message, "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    break;
             }
 
+        }
+
+        private void AddDetalle_Click(object sender, EventArgs e)
+        {
+            new DetalleServicio();
         }
     }
 }

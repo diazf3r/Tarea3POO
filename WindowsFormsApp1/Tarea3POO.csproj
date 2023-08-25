@@ -71,6 +71,12 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DetalleServicio.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DetalleServicio.Designer.cs">
+      <DependentUpon>DetalleServicio.cs</DependentUpon>
+    </Compile>
     <Compile Include="MasterClass.cs" />
     <Compile Include="MasterDataSet.cs">
       <DependentUpon>MasterDataSet.xsd</DependentUpon>
@@ -88,6 +94,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="DetalleServicio.resx">
+      <DependentUpon>DetalleServicio.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MasterForm.resx">
       <DependentUpon>MasterForm.cs</DependentUpon>
     </EmbeddedResource>
