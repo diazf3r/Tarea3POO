@@ -5,10 +5,13 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
+using System.Net;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using MaterialSkin.Controls;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace WindowsFormsApp1
 {
@@ -29,6 +32,8 @@ namespace WindowsFormsApp1
 
         private void MasterForm_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'masterDataSet.Servicio' table. You can move, or remove it, as needed.
+            this.servicioTableAdapter.Fill(this.masterDataSet.Servicio);
             MasterClass.conec = new SqlConnection();
             MasterClass.conec.ConnectionString = MasterClass.cnn;
 
@@ -52,9 +57,8 @@ namespace WindowsFormsApp1
                 case "Proveedor":
                     Proveedor_load();
                     break;
-                case "servicio":
-                    break;
-                case "detalle servicio":
+                case "Servicio":
+                    Servicio_load();
                     break;
                 default:
                     MessageBox.Show("Debe seleccionar una opcion", "Atencion", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation);
@@ -99,6 +103,7 @@ namespace WindowsFormsApp1
             MasterDataAdapter = new SqlDataAdapter("Select * from Empleado", MasterClass.conec);
             MasterDataAdapter.FillSchema(masterDataSet, SchemaType.Source, "Empleado");
             MasterDataAdapter.Fill(masterDataSet, "Empleado");
+
 
             dg.DataSource = masterDataSet;
             dg.DataMember = "Empleado";
@@ -226,15 +231,31 @@ namespace WindowsFormsApp1
 
         private void Servicio_load()
         {
-            MasterDataAdapter = new SqlDataAdapter("Select * from Servicio", MasterClass.conec);
+            MasterDataAdapter = new SqlDataAdapter();
+            MasterDataAdapter.SelectCommand = new SqlCommand("Select * from Servicio", MasterClass.conec);
             MasterDataAdapter.FillSchema(masterDataSet, SchemaType.Source, "Servicio");
             MasterDataAdapter.Fill(masterDataSet, "Servicio");
 
             dg.DataSource = masterDataSet;
             dg.DataMember = "Servicio";
-            option = 1;
-            this.save.Visible = false;
+            option = 5;
+            this.save.Visible = true;
             this.delete.Visible = false;
+        }
+
+        private void Servicio_save()
+        {
+            MasterDataAdapter.InsertCommand = new SqlCommand("Insert Into Servicio Values(@a,@b,@c)", MasterClass.conec);
+            MasterDataAdapter.InsertCommand.Parameters.Add("@a", SqlDbType.Int, 4, "ServicioId");
+            MasterDataAdapter.InsertCommand.Parameters.Add("@b", SqlDbType.VarChar, 50, "Nombre");
+            MasterDataAdapter.InsertCommand.Parameters.Add("@c", SqlDbType.Float, 4, "Precio");
+
+            MasterDataAdapter.UpdateCommand = new SqlCommand("Update Servicio set Nombre = @b, Precio = @c where ServicioID = @a", MasterClass.conec);
+            MasterDataAdapter.UpdateCommand.Parameters.Add("@a", SqlDbType.Int, 4, "ServicioId");
+            MasterDataAdapter.UpdateCommand.Parameters.Add("@b", SqlDbType.VarChar, 50, "Nombre");
+            MasterDataAdapter.UpdateCommand.Parameters.Add("@c", SqlDbType.Float, 4, "Precio");
+
+            MasterDataAdapter.Update(masterDataSet.Empleado);
         }
 
         private void save_Click(object sender, EventArgs e)
@@ -283,6 +304,16 @@ namespace WindowsFormsApp1
                         MessageBox.Show(ex.Message, "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 break;
+                case 5:
+                    try
+                    {
+                        Servicio_save();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message, "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    break;
 
             }
 
@@ -295,7 +326,7 @@ namespace WindowsFormsApp1
                 case 1:
                     try
                     {
-                       // articulo_save();
+                        articulo_save();
                     }
                     catch (Exception ex)
                     {

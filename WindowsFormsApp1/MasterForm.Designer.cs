@@ -28,14 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.SelectTabla = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.dg = new System.Windows.Forms.DataGridView();
             this.masterDataSet = new WindowsFormsApp1.MasterDataSet();
             this.save = new System.Windows.Forms.Button();
             this.delete = new System.Windows.Forms.Button();
+            this.servicioBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.servicioTableAdapter = new WindowsFormsApp1.MasterDataSetTableAdapters.ServicioTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.dg)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.masterDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.servicioBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // SelectTabla
@@ -100,6 +104,15 @@
             this.delete.UseVisualStyleBackColor = true;
             this.delete.Click += new System.EventHandler(this.delete_Click);
             // 
+            // servicioBindingSource
+            // 
+            this.servicioBindingSource.DataMember = "Servicio";
+            this.servicioBindingSource.DataSource = this.masterDataSet;
+            // 
+            // servicioTableAdapter
+            // 
+            this.servicioTableAdapter.ClearBeforeFill = true;
+            // 
             // MasterForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -115,6 +128,7 @@
             this.Load += new System.EventHandler(this.MasterForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dg)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.masterDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.servicioBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -128,6 +142,8 @@
         private MasterDataSet masterDataSet;
         private System.Windows.Forms.Button save;
         private System.Windows.Forms.Button delete;
+        private System.Windows.Forms.BindingSource servicioBindingSource;
+        private MasterDataSetTableAdapters.ServicioTableAdapter servicioTableAdapter;
     }
 }
 
