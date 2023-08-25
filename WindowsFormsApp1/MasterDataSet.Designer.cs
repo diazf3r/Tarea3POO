@@ -10,6 +10,9 @@
 
 #pragma warning disable 1591
 
+using System;
+using System.Data;
+
 namespace WindowsFormsApp1 {
     
     
@@ -6958,6 +6961,11 @@ SELECT ClienteID, Direccion, Tipo, Sexo, Civil, Razon, Contacto FROM Cliente WHE
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
         public virtual int Update(string Direccion, string Tipo, string Sexo, string Civil, string Razon, string Contacto, int Original_ClienteID, string Original_Direccion, string Original_Tipo, string Original_Sexo, string Original_Civil, string Original_Razon, string Original_Contacto) {
             return this.Update(Original_ClienteID, Direccion, Tipo, Sexo, Civil, Razon, Contacto, Original_ClienteID, Original_Direccion, Original_Tipo, Original_Sexo, Original_Civil, Original_Razon, Original_Contacto);
+        }
+
+        internal void Fill(DataColumn clienteIDColumn)
+        {
+            throw new NotImplementedException();
         }
     }
     

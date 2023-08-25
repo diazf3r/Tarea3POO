@@ -77,6 +77,18 @@
     <Compile Include="DetalleServicio.Designer.cs">
       <DependentUpon>DetalleServicio.cs</DependentUpon>
     </Compile>
+    <Compile Include="Cantidad.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Cantidad.Designer.cs">
+      <DependentUpon>Cantidad.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CrearVentaServicio.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CrearVentaServicio.Designer.cs">
+      <DependentUpon>CrearVentaServicio.cs</DependentUpon>
+    </Compile>
     <Compile Include="MasterClass.cs" />
     <Compile Include="MasterDataSet.cs">
       <DependentUpon>MasterDataSet.xsd</DependentUpon>
@@ -97,6 +109,18 @@
     <EmbeddedResource Include="DetalleServicio.resx">
       <DependentUpon>DetalleServicio.cs</DependentUpon>
     </EmbeddedResource>
+    <Compile Include="ServicioCliente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ServicioCliente.Designer.cs">
+      <DependentUpon>ServicioCliente.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Cantidad.resx">
+      <DependentUpon>Cantidad.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrearVentaServicio.resx">
+      <DependentUpon>CrearVentaServicio.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MasterForm.resx">
       <DependentUpon>MasterForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -109,6 +133,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="ServicioCliente.resx">
+      <DependentUpon>ServicioCliente.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="MasterDataSet.xsc">
       <DependentUpon>MasterDataSet.xsd</DependentUpon>
     </None>
