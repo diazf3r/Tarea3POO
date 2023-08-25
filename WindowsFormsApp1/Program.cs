@@ -16,9 +16,7 @@ namespace WindowsFormsApp1
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            //Application.Run(new MasterForm());
-
-            Application.Run(new ServicioCliente());
+            Application.Run(new Menu()); 
 
         }
     }
