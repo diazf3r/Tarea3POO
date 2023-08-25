@@ -32,11 +32,11 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.CBArticulo = new System.Windows.Forms.ComboBox();
-            this.CBServicio = new System.Windows.Forms.ComboBox();
             this.cantidad = new System.Windows.Forms.MaskedTextBox();
             this.Cancel = new System.Windows.Forms.Button();
             this.Save = new System.Windows.Forms.Button();
             this.masterDataSet1 = new WindowsFormsApp1.MasterDataSet();
+            this.ServicioID = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.masterDataSet1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -79,14 +79,6 @@
             this.CBArticulo.Size = new System.Drawing.Size(299, 21);
             this.CBArticulo.TabIndex = 1;
             // 
-            // CBServicio
-            // 
-            this.CBServicio.FormattingEnabled = true;
-            this.CBServicio.Location = new System.Drawing.Point(63, 95);
-            this.CBServicio.Name = "CBServicio";
-            this.CBServicio.Size = new System.Drawing.Size(299, 21);
-            this.CBServicio.TabIndex = 1;
-            // 
             // cantidad
             // 
             this.cantidad.Location = new System.Drawing.Point(63, 167);
@@ -121,15 +113,23 @@
             this.masterDataSet1.DataSetName = "MasterDataSet";
             this.masterDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
+            // ServicioID
+            // 
+            this.ServicioID.Location = new System.Drawing.Point(64, 90);
+            this.ServicioID.Name = "ServicioID";
+            this.ServicioID.ReadOnly = true;
+            this.ServicioID.Size = new System.Drawing.Size(298, 20);
+            this.ServicioID.TabIndex = 4;
+            // 
             // DetalleServicio
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(455, 214);
+            this.Controls.Add(this.ServicioID);
             this.Controls.Add(this.Save);
             this.Controls.Add(this.Cancel);
             this.Controls.Add(this.cantidad);
-            this.Controls.Add(this.CBServicio);
             this.Controls.Add(this.CBArticulo);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -149,10 +149,10 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox CBArticulo;
-        private System.Windows.Forms.ComboBox CBServicio;
         private System.Windows.Forms.MaskedTextBox cantidad;
         private System.Windows.Forms.Button Cancel;
         private System.Windows.Forms.Button Save;
         private MasterDataSet masterDataSet1;
+        private System.Windows.Forms.TextBox ServicioID;
     }
 }

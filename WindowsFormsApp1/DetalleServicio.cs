@@ -16,17 +16,25 @@ namespace WindowsFormsApp1
     public partial class DetalleServicio : MaterialForm
     {
         private SqlDataAdapter Detailadapter;
+        private SqlCommandBuilder cb;
         private SqlDataAdapter articuloadapter;
         private SqlDataAdapter servicioadapter;
-        public DetalleServicio()
+        DataRow reg;
+        //public DetalleServicio()
+        //{
+        //    InitializeComponent();
+        //}
+
+        public DetalleServicio(SqlConnection connec, int row)
         {
             InitializeComponent();
+            this.ServicioID.Text = row.ToString();
         }
 
         private void DetalleServicio_Load(object sender, EventArgs e)
         {
-            MasterClass.conec = new SqlConnection();
-            MasterClass.conec.ConnectionString = MasterClass.cnn;
+            //MasterClass.conec = new SqlConnection();
+            //MasterClass.conec.ConnectionString = MasterClass.cnn;
 
             articuloadapter = new SqlDataAdapter("Select * from Articulo Order By Nombre", MasterClass.conec);
             articuloadapter.FillSchema(masterDataSet1, SchemaType.Source, "Articulo");
@@ -35,12 +43,12 @@ namespace WindowsFormsApp1
             CBArticulo.DisplayMember = "Articulo.nombre";
             CBArticulo.ValueMember = "Articulo.ArticuloId";
 
-            servicioadapter = new SqlDataAdapter("Select * from Servicio Order By Nombre", MasterClass.conec);
-            servicioadapter.FillSchema(masterDataSet1, SchemaType.Source, "Servicio");
-            servicioadapter.Fill(masterDataSet1, "Servicio");
-            CBServicio.DataSource = masterDataSet1;
-            CBServicio.DisplayMember = "Servicio.Nombre";
-            CBServicio.ValueMember = "Servicio.ServicioId";
+
+            Detailadapter = new SqlDataAdapter("Select * from ServicioDet", MasterClass.conec);
+            Detailadapter.FillSchema(masterDataSet1, SchemaType.Source, "ServicioDet");
+            Detailadapter.Fill(masterDataSet1, "ServicioDet");
+            cb = new SqlCommandBuilder(Detailadapter);
+
         }
 
         private void label3_Click(object sender, EventArgs e)
@@ -55,22 +63,18 @@ namespace WindowsFormsApp1
 
         private void Save_Click(object sender, EventArgs e)
         {
-           var servicio =  Convert.ToInt32(CBServicio.SelectedValue);
-           var articulo =  Convert.ToInt32(CBArticulo.SelectedValue);
+            reg = masterDataSet1.ServicioDet.NewRow();
+           var servicio =  Convert.ToInt32(this.ServicioID.ToString());
+           var articulo =  Convert.ToInt32(CBArticulo.SelectedValue.ToString());
            var cantidad =  Convert.ToInt32(this.cantidad.Text);
             try
             {
-                Detailadapter = new SqlDataAdapter("Select * from ServicioDet", MasterClass.conec);
-                Detailadapter.FillSchema(masterDataSet1, SchemaType.Source, "ServicioDet");
-                Detailadapter.Fill(masterDataSet1, "ServicioDet");
-
-                Detailadapter.InsertCommand = new SqlCommand("Insert Into ServicioDet (ServicioId,ArticuloId,Cantidad) Values(@a,@b,@c)", MasterClass.conec);
-                Detailadapter.InsertCommand.Parameters.AddWithValue("@a", servicio);
-                Detailadapter.InsertCommand.Parameters.AddWithValue("@b", articulo);
-                Detailadapter.InsertCommand.Parameters.AddWithValue("@b", cantidad);
-
+                reg["ServicioID"] = servicio;
+                reg["ArticuloID"] = articulo;
+                reg["Cantidad"] = cantidad;
+                masterDataSet1.ServicioDet.Rows.Add(reg);
                 Detailadapter.Update(masterDataSet1.ServicioDet);
-                this.Dispose();
+                this.cantidad.Text = "";
             }
             catch (Exception ex)
             {

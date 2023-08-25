@@ -32,6 +32,7 @@ namespace WindowsFormsApp1
         {
             MasterClass.conec = new SqlConnection();
             MasterClass.conec.ConnectionString = MasterClass.cnn;
+            this.Add_Detail.Visible = false;
 
         }
 
@@ -255,7 +256,7 @@ namespace WindowsFormsApp1
             //MasterDataAdapter.DeleteCommand = new SqlCommand("Delete From Servicios where ServicioID = @a", MasterClass.conec);
             //MasterDataAdapter.DeleteCommand.Parameters.Add("@a", SqlDbType.Int, 4, "ServicioId");
 
-            MasterDataAdapter.Update(masterDataSet.Empleado);
+            MasterDataAdapter.Update(masterDataSet.Servicio);
         }
 
         private void save_Click(object sender, EventArgs e)
@@ -381,7 +382,15 @@ namespace WindowsFormsApp1
 
         private void AddDetalle_Click(object sender, EventArgs e)
         {
-            new DetalleServicio();
+            if (dg.SelectedCells.Count > 0)
+            {
+                int selectedrowindex = dg.SelectedCells[0].RowIndex;
+                DataGridViewRow selectedRow = dg.Rows[selectedrowindex];
+                int cellValue = Convert.ToInt32(selectedRow.Cells["ServicioId"].Value);
+                DetalleServicio frm = new DetalleServicio(MasterClass.conec, cellValue);
+
+                frm.ShowDialog();
+            }
         }
     }
 }

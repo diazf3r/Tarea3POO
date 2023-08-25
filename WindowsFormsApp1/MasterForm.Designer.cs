@@ -46,8 +46,7 @@
             "Cliente",
             "Empleado",
             "Proveedor",
-            "Servicio",
-            "Detalle de Servicio"});
+            "Servicio"});
             this.SelectTabla.Location = new System.Drawing.Point(12, 99);
             this.SelectTabla.Name = "SelectTabla";
             this.SelectTabla.Size = new System.Drawing.Size(252, 21);
@@ -71,7 +70,7 @@
             this.dg.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dg.Location = new System.Drawing.Point(12, 135);
             this.dg.Name = "dg";
-            this.dg.Size = new System.Drawing.Size(1007, 369);
+            this.dg.Size = new System.Drawing.Size(785, 369);
             this.dg.TabIndex = 2;
             // 
             // masterDataSet
@@ -101,7 +100,7 @@
             // 
             // Add_Detail
             // 
-            this.Add_Detail.Location = new System.Drawing.Point(897, 81);
+            this.Add_Detail.Location = new System.Drawing.Point(675, 84);
             this.Add_Detail.Name = "Add_Detail";
             this.Add_Detail.Size = new System.Drawing.Size(122, 48);
             this.Add_Detail.TabIndex = 3;
@@ -113,7 +112,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1031, 584);
+            this.ClientSize = new System.Drawing.Size(807, 584);
             this.Controls.Add(this.Add_Detail);
             this.Controls.Add(this.delete);
             this.Controls.Add(this.save);
